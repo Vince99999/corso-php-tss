@@ -120,7 +120,7 @@ if ( $_SERVER['REQUEST_METHOD']== 'GET'){
 
                     <div class="mb-3">
                         <label for="first_name" class="form-label">Nome</label>
-                        <input type="text" class="form-control <?php echo $isValidNameClass ?>" name="first_name" id="first_name" >
+                        <input type="text" value="<?php echo $_POST['first_name'] ?>" class="form-control <?php echo $isValidNameClass ?>" name="first_name" id="first_name" >
                         <!-- todo : mettere is-invalid -->
                         <?php
                         if (isset($validateName) && !$validateName){?>
