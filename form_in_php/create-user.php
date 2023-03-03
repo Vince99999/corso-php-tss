@@ -2,35 +2,61 @@
 <?php
 error_reporting(E_ALL);
 
+
+// Aggiungere la validazione dell'utente deve essere un email corretta
+
+
 require "./class/validator/Validable.php";
 require "./class/validator/ValidateRequired.php";
+require "./class/validator/ValidateMail.php";
+
+print_r ($_POST);
+
+$validatorName = new ValidateRequired('', 'il nome è obbligatorio');
+$validatorLastName = new ValidateRequired('', 'il cognome è obbligatorio');
+
+$validatorEmail = new ValidateMail('email', "l'email è obbligatoria");
+
 
 //print_r($_SERVER["REQUEST_METHOD"]);
 if($_SERVER["REQUEST_METHOD"] === 'POST'){
 //  echo "dati inviati adesso li devo controllare";
 
-$validatorName = new ValidateRequired();
 $validateName = $validatorName -> isValid($_POST['first_name']);
-$validateLastName =  $validatorName -> isValid($_POST['last_name']);
-$validatePassqword = $validatorName -> isValid($_POST['password']);
+$isValidNameClass = $validatorName -> isValid($_POST['first_name']) ? '' : "is-invalid";
+
+$validateLastName = $validatorLastName -> isValid($_POST['last_name']);
+$isValidLastNameClass = $validatorLastName -> isValid($_POST['last_name']) ? '' : "is-invalid";
+
+
+
+
+$validateEmail = $validatorEmail -> isValid($_POST['email']);
+$isValidEmailClass = $validatorEmail -> isValid($_POST['email']) ? '' : "is-invalid";
+
+
+
+
+
+
+
+//$validateLastName =  $validatorName -> isValid($_POST['last_name']);
+//$validatePassqword = $validatorName -> isValid($_POST['password']);
 
 
 //probabilmente dopo useremo 
 
 // if + assegnazione con l'operatore ternario
-$isValidNameClass = $validatorName -> isValid($_POST['first_name']) ? '' : "is-invalid";
+//$isValidNameClass = $validatorName -> isValid($_POST['first_name']) ? '' : "is-invalid";
 // in questo caso si può usare la stessa istanza di classe 
-$isValidLastNameClass = $validatorName -> isValid ($_POST['last_name']) ? '' : "is-invalid";
-$isValidPassword = $validatorName -> isValid($_POST['password']) ? '' : "is-invalid";
+//$isValidLastNameClass = $validatorName -> isValid ($_POST['last_name']) ? '' : "is-invalid";
+//$isValidPassword = $validatorName -> isValid($_POST['password']) ? '' : "is-invalid";
 
-var_dump ($isValidNameClass);
-var_dump ($isValidLastNameClass);
+// var_dump ($isValidNameClass);
+// var_dump ($isValidLastNameClass);
 
-
-
-$validatorGender = new ValidateRequired();
-
-$validatedGender = $validatorGender -> isValid(!isset($_POST ["gender"]) ? '' : $_POST['gender']);
+// $validatorGender = new ValidateRequired();
+// $validatedGender = $validatorGender -> isValid(!isset($_POST ["gender"]) ? '' : $_POST['gender']);
 
 
 //l'operatore ternario sostituisce la if con la relativa assegnazione di:
@@ -120,25 +146,27 @@ if ( $_SERVER['REQUEST_METHOD']== 'GET'){
 
                     <div class="mb-3">
                         <label for="first_name" class="form-label">Nome</label>
-                        <input type="text" value="<?php echo $_POST['first_name'] ?>" class="form-control <?php echo $isValidNameClass ?>" name="first_name" id="first_name" >
+                        <input type="text" value="<?php echo $validatorName->getValue() ?>" class="form-control <?php echo $isValidNameClass ?>" name="first_name" id="first_name" >
                         <!-- todo : mettere is-invalid -->
                         <?php
-                        if (isset($validateName) && !$validateName){?>
+                        if (!$validatorName->getValid()){?>
                          <div class="invalid-feedback">
-                        il nome è obbligatorio 
+                             <!--L'equivalente di (< ? php echo .... ? >) è (<= ... ?>)-->
+                        <?= $validatorName ->getMessage() ?>
                          </div>
                          <?php } ?>
                     </div>
 
                     <div class="mb-3">
                         <label for="last_name" class="form-label">Cognome</label>
-                        <input type="text" class="form-control <?php echo $isValidLastNameClass?>" name="last_name" id="last_name" >
+                        <input type="text"  value="<?php echo $validatorLastName->getValue() ?>" class="form-control <?php echo $isValidLastNameClass?>" name="last_name" id="last_name" >
                         <?php
-                        if(isset($validateLastName) && !$validateLastName){?>
-                        <div class="invalid-feedback">
-                            il cognome è obbligatorio
-                      </div>
-                   <?php } ?>
+                        if (!$validatorLastName->getValid()){?>
+                         <div class="invalid-feedback">
+                             <!--L'equivalente di (< ? php echo .... ? >) è (<= ... ?>)-->
+                        <?= $validatorLastName ->getMessage() ?>
+                         </div>
+                         <?php } ?>
                     </div>
 
                     <div class="mb-3">
@@ -292,15 +320,19 @@ if ( $_SERVER['REQUEST_METHOD']== 'GET'){
 
                     <div class="mb-3">
                         <label for="email" class="form-label">Nome utente</label>
-                        <input type="text" class="form-control" name="email" id="email" >
-                        <div class="invalid-feedback">
-                            errore
-                           </div>
+                        <input type="text" value="<?php echo $validatorEmail->getValue() ?>" class="form-control <?php echo $isValidEmailClass ?>" name="email" id="email" >
+                        <?php
+                        if ($validatorEmail->getValue()){?>
+                         <div class="invalid-feedback">
+                             <!--L'equivalente di (< ? php echo .... ? >) è (<= ... ?>)-->
+                        <?= $validatorEmail->getMessage() ?>
+                         </div>
+                         <?php } ?>
                     </div>
 
                     <div class="mb-3">
                         <label for="password" class="form-label">Password</label>
-                        <input type="password" class="form-control <?php echo $isValidPassword?>" name="password" id="password" >
+                        <input type="password"  class="form-control" name="password" id="password" >
                         <?php
                         if (isset($validateName) && !$validateName){?>
                         <div class="invalid-feedback">
