@@ -9,12 +9,13 @@ error_reporting(E_ALL);
 require "./class/validator/Validable.php";
 require "./class/validator/ValidateRequired.php";
 require "./class/validator/ValidateMail.php";
+require "./class/validator/ValidateGender.php";
 
 print_r ($_POST);
 
 $validatorName = new ValidateRequired('', 'il nome è obbligatorio');
 $validatorLastName = new ValidateRequired('', 'il cognome è obbligatorio');
-
+$validatorGender = new ValidateGender();
 $validatorEmail = new ValidateMail('email', "l'email è obbligatoria");
 
 
@@ -28,7 +29,8 @@ $isValidNameClass = $validatorName -> isValid($_POST['first_name']) ? '' : "is-i
 $validateLastName = $validatorLastName -> isValid($_POST['last_name']);
 $isValidLastNameClass = $validatorLastName -> isValid($_POST['last_name']) ? '' : "is-invalid";
 
-
+$validatedGender = $validatorGender -> isValid(!isset($_POST ["gender"]) ? '' : $_POST['gender']);
+$checkGender =  $validatorGender -> Value();
 
 
 $validateEmail = $validatorEmail -> isValid($_POST['email']);
@@ -299,18 +301,18 @@ if ( $_SERVER['REQUEST_METHOD']== 'GET'){
                         <span>Genere</span>
                         <div class="form-check">
                             <!-- TODO: METTERE IS-INVALID SU ENTRAMBI I GENERI -->
-                            <input class="form-check-input <?php echo !$validatedGender  ? 'is-invalid' : '' ?>" type="radio" name="gender" id="gender_M">
+                            <input class="form-check-input <?php echo !$validatedGender  ? 'is-invalid' : '' ?>" type="radio" name="gender" id="gender_M" <?php                     ?>>
                             <label class="form-check-label" for="gender_M">
                                 Maschile
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input <?php echo !$validatedGender  ? 'is-invalid' : '' ?> " type="radio" name="gender" id="gender_F">
+                            <input class="form-check-input <?php echo !$validatedGender  ? 'is-invalid' : '' ?> " type="radio" name="gender" id="gender_F" <?php               ?>>
                             <label class="form-check-label" for="gender_F">
                                 Femminile
                             </label>
                             <?php
-                            if($validatedGender): ?>
+                            if(isset($validatedGender) && $validatedGender == false): ?>
                             <div class="invalid-feedback">
                             errore
                             <?php endif ?>
