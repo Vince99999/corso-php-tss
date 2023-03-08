@@ -19,7 +19,8 @@ provincia_id INT not null AUTO_INCREMENT,
 nome VARCHAR (255) not null,
 sigla VARCHAR (2) not null,
 id_regione int not null,
-primary key (provincia_id)
+primary key (provincia_id),
+Foreign Key (id_regione) REFERENCES regione (regione_id)
 ) ;
 
 
