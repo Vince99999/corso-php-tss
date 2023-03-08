@@ -13,7 +13,8 @@ $province_array = array_map(function($provincia){
 return
 [
     'nome' => $provincia -> nome,
-    'sigla'=> $provincia -> sigla
+    'sigla'=> $provincia -> sigla,
+    'regione'=> $provincia -> regione
 ];
 
 }, $province_object);
@@ -30,16 +31,26 @@ try {
 
 
     foreach ($province_array as $città => $provincia) {
+$nome = addslashes ($provincia['nome']);
+$sigla =addslashes  ($provincia['sigla']);
+$regione = addslashes  ($provincia['regione']);
 
-            $provincia = implode(',',$provincia);
+$id_regione_sql ="select regione_id from regione where nome_regione = '$regione';";
+$id_regione=$conn -> query($id_regione_sql)->fetchColumn();
+
+
+
+                      
+
+        //    $provincia = implode(',',$provincia);
            // var_dump(substr($provincia,-2));
            // var_dump(substr($provincia,0,-3));
 
-            $sigla=addslashes(substr($provincia,-2));
-            $nome = addslashes(substr($provincia,0,-3));
+        //    $sigla=addslashes(substr($provincia,-2));
+        //    $nome = addslashes(substr($provincia,0,-3));
          
 
-        $sql = "INSERT INTO provincia (nome, sigla) VALUES ('$nome','$sigla');";
+        $sql = "INSERT INTO provincia (nome, sigla, id_regione) VALUES ('$nome','$sigla','$id_regione');";
         echo $sql."\n";
         $conn -> query($sql);
     }

@@ -24,18 +24,27 @@ print_r($regioni_unique);
 $dsn = "mysql: host.=".DB_HOST.";dbname=".DB_NAME;
 
 try {
-    $conn = new PDO($dsn, DB_USER, DB_PASSWORD);
+    $conn = new PDO($dsn,DB_USER,DB_PASSWORD);
 
+    // TRUNCATE TABLE : elimina i dati all'interno di una tabella, ma non la tabella stessa.
+    $conn -> query('TRUNCATE TABLE regione');
 
     foreach ($regioni_unique as $regione) {
-        $sql= "INSERT INTO regione(nome) VALUES ('Abruzzo');";
-        $conn -> query($sql);
-    }
+     //addslashes() converte, fa escape di tutti caratteri che possono creare qualche conflitto
+     //Restituisce una stringa con backslashes aggiunti prima dei caratteri di cui è necessario eseguire l'escape.
+     // caratteri (  '   "   \   spazioVuoto)
+    $regione =addslashes($regione);
     
-  
-} catch (\Throwable $th) {
+    $sql = "INSERT INTO regione(nome_regione) VALUES('$regione');";
+    echo $sql ."\n";
+    $conn -> query($sql);
+    }
+}catch(\Throwable $th) {
     throw $th;
 }
+
+print_r($regioni_unique);
+
 
 //file che importa le province
 //decodificare

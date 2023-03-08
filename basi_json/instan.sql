@@ -18,5 +18,9 @@ insert into regione (nome_regione)
 provincia_id INT not null AUTO_INCREMENT,
 nome VARCHAR (255) not null,
 sigla VARCHAR (2) not null,
+id_regione int not null,
 primary key (provincia_id)
 ) ;
+
+
+select regione_id from regione where nome_regione="Lazio";
