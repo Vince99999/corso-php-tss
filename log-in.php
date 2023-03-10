@@ -1,3 +1,22 @@
+<?php
+print_r($_srver['METHOD_REQUEST']);
+if($_SERVER['REQUEST-METHOD']=== 'POST'){
+
+  echo "dati inviati adesso li devo controllare";
+}else{
+
+echo "l'utente deve ancora compilare non devo ancora fare nulla";
+
+}
+
+
+
+
+
+
+
+?>
+
 <!doctype html>
 <html lang="en">
   <head>
