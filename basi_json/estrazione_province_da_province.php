@@ -25,36 +25,22 @@ $dsn = "mysql: host.=".DB_HOST.";dbname=".DB_NAME;
 
 try {
     $conn = new PDO($dsn, DB_USER, DB_PASSWORD);
-
     $conn -> query( 'Truncate Table provincia');
-
-
-
     foreach ($province_array as $città => $provincia) {
 $nome = addslashes ($provincia['nome']);
 $sigla =addslashes  ($provincia['sigla']);
 $regione = addslashes  ($provincia['regione']);
 
 $id_regione_sql ="select regione_id from regione where nome_regione = '$regione';";
+//fetchColumn() permette di utilizzare il risultato della select come variabile
 $id_regione=$conn -> query($id_regione_sql)->fetchColumn();
-        //    $provincia = implode(',',$provincia);
-           // var_dump(substr($provincia,-2));
-           // var_dump(substr($provincia,0,-3));
-
-        //    $sigla=addslashes(substr($provincia,-2));
-        //    $nome = addslashes(substr($provincia,0,-3));
+ 
         $sql = "INSERT INTO provincia (nome, sigla, id_regione) VALUES ('$nome','$sigla','$id_regione');";
         echo $sql."\n";
         $conn -> query($sql);
     }
-    
-  
 } catch (\Throwable $th) {
     throw $th;
 }
-
-
-
-
 
 ?>
