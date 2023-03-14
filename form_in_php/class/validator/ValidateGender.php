@@ -1,12 +1,15 @@
 <?php
-class ValidateGender
+
+namespace validator;
+
+class ValidateGender implements Validable
 {
 
 private $value = "";
 
 
 
-    public function isValid(string $gender): bool{
+    public function isValid( $gender): bool{
         if ($gender == "on") {
             $this->value = "checked";
            return true;
@@ -15,7 +18,12 @@ private $value = "";
         }
        
     }
-    public function Value(){
+    public function getValid(){
 return $this->value;
+}
+
+public function getMessage()
+{
+  
 }
 }

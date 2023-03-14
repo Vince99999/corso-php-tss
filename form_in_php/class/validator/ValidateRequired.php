@@ -1,4 +1,5 @@
 <?php
+namespace validator;
 
 
 /**
@@ -10,7 +11,6 @@
  *      - impostare la classe di bootstrap is-invalid
  * 
  */
-
 
 
 class ValidateRequired implements Validable {

@@ -1,5 +1,6 @@
 <?php
-require "./form_in_php/class/validator/Validable.php";
+//require "./form_in_php/class/validator/Validable.php";
+namespace validator;
  class ValidateDate implements Validable{
 
 // public function isValid($date) : bool{
@@ -20,7 +21,7 @@ require "./form_in_php/class/validator/Validable.php";
 public function isValid($value){
 {
   $sanitize = trim(strip_tags($value));
-  $dt = DateTime :: createFromFormat('d/m/Y', $sanitize);
+  $dt = \DateTime :: createFromFormat('d/m/Y', $sanitize);
 echo $value."\n";
   print_r($dt->format('d/m/Y'));
   
@@ -37,9 +38,13 @@ echo $value."\n";
 
 
 }
-public function message()
+public function getMessage()
 {
   return 'data non valida';
+}
+
+public function getValid(){
+
 }
 
  }

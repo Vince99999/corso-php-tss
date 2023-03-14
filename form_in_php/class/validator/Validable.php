@@ -1,5 +1,7 @@
 <?php
 
+namespace validator;
+
 interface Validable {
 
 
