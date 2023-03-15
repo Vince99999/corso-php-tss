@@ -1,50 +1,50 @@
 <?php
-//require "./form_in_php/class/validator/Validable.php";
 namespace validator;
- class ValidateDate implements Validable{
 
-// public function isValid($date) : bool{
+class ValidateDate implements Validable {
 
-//     $parametriData=explode("-", $date);
-//     if (isset($parametriData)){
-//     $anno=$parametriData[0];
-//     $mese=$parametriData[1];
-//     $giorno=$parametriData[2];
-//     return  checkdate($mese, $giorno, $anno);
-//   }else{
+     /** @var string rappresenta il valore immesso nel form ripulito */
+    private $value;
+    private $message;
 
-//     return false;
-//     }
-//   }
-// }
+    /** se il valore è valido e se devo visualizzare il messaggio  */
+    private $valid;
 
-public function isValid($value){
-{
-  $sanitize = trim(strip_tags($value));
-  $dt = \DateTime :: createFromFormat('d/m/Y', $sanitize);
-echo $value."\n";
-  print_r($dt->format('d/m/Y'));
-  
+    public function __construct($default_value='',$message='è obbligatorio') {
+        $this->value = $default_value;
+        $this->valid = true;
+        $this->message = $message;
+    }
 
+    public function isValid($value)
+    {
+        $strip_tag = strip_tags($value);
+        $sanitize = trim($strip_tag);
+        
+        $dt = \DateTime::createFromFormat('d/m/Y',$sanitize);
+        if($dt && $dt->format('d/m/Y') === $sanitize) {
 
-  if($dt && $dt->format('d/m/Y') === $sanitize){
-    return $dt->format('d/m/Y');
-  }else{
-    return false;
-  };
+            return $dt->format('d/m/Y');
+        
+        }else{
+            return false;
+        };
+    }
+    
+
+    public function getValue()
+    {
+      return $this->value;
+    }
+   
+    public function getMessage()
+    {
+      return $this->message;
+    }
+   
+    public function getValid()
+    {
+      return $this->valid;
+    }
+
 }
-
-
-
-
-}
-public function getMessage()
-{
-  return 'data non valida';
-}
-
-public function getValid(){
-
-}
-
- }
