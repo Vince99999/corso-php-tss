@@ -5,6 +5,11 @@ use Registry\it\Regione;
 use validator\ValidateGender;
 use validator\ValidateMail;
 use validator\ValidateRequired;
+use validator\ValidatorRunner;
+
+require "../config.php";
+require "./autoload.php";
+
 
 error_reporting(E_ALL);
 // Aggiungere la validazione dell'utente deve essere un email corretta
@@ -12,28 +17,56 @@ error_reporting(E_ALL);
 
 print_r($_POST);
 
-$validatorName = new ValidateRequired('', 'il nome è obbligatorio');
-$validatorLastName = new ValidateRequired('', 'il cognome è obbligatorio');
-$validatorGender = new ValidateGender();
-$validatorEmail = new ValidateMail('email', "l'email è obbligatoria");
+
+$validatorRunner= new ValidatorRunner([
+
+    "validatorName" => new ValidateRequired('', 'il nome è obbligatorio'),
+     "validatorLastName" => new ValidateRequired('', 'il cognome è obbligatorio'),
+     "validatorGender" => new ValidateGender(),
+   "validatorEmail "=> new ValidateMail('email', "l'email è obbligatoria")
+ 
+ 
+ ]);
 
 
 //print_r($_SERVER["REQUEST_METHOD"]);
 if ($_SERVER["REQUEST_METHOD"] === 'POST') {
+
+
+$validatorRunner ->isValid();
+
+extract($validatorRunner ->getValidatorList());
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     //  echo "dati inviati adesso li devo controllare";
 
-    $validateName = $validatorName->isValid($_POST['first_name']);
-    $isValidNameClass = $validatorName->isValid($_POST['first_name']) ? '' : "is-invalid";
+    // $validateName = $validatorName->isValid($_POST['first_name']);
+    // $isValidNameClass = $validatorName->isValid($_POST['first_name']) ? '' : "is-invalid";
 
-    $validateLastName = $validatorLastName->isValid($_POST['last_name']);
-    $isValidLastNameClass = $validatorLastName->isValid($_POST['last_name']) ? '' : "is-invalid";
+    // $validateLastName = $validatorLastName->isValid($_POST['last_name']);
+    // $isValidLastNameClass = $validatorLastName->isValid($_POST['last_name']) ? '' : "is-invalid";
 
-    $validatedGender = $validatorGender->isValid(!isset($_POST["gender"]) ? '' : $_POST['gender']);
-    $checkGender =  $validatorGender->getValid();
+    // $validatedGender = $validatorGender->isValid(!isset($_POST["gender"]) ? '' : $_POST['gender']);
+    // $checkGender =  $validatorGender->getValid();
 
 
-    $validateEmail = $validatorEmail->isValid($_POST['email']);
-    $isValidEmailClass = $validatorEmail->isValid($_POST['email']) ? '' : "is-invalid";
+    // $validateEmail = $validatorEmail->isValid($_POST['email']);
+    // $isValidEmailClass = $validatorEmail->isValid($_POST['email']) ? '' : "is-invalid";
 
     //$validateLastName =  $validatorName -> isValid($_POST['last_name']);
     //$validatePassqword = $validatorName -> isValid($_POST['password']);
@@ -166,6 +199,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                     <div class="mb-3">
                         <div class="row">
 
+                        <div class="col">
+                                <label for="birth_city" class="form-label">città</label>
+                                <input type="text" class="form-control" class="mb-3">
+                            </div>
+                            
                             <div class="col">
 
                                 <label for="birth_region" class="form-label">regione</label>
@@ -186,12 +224,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                                     <?php endforeach ?>
                                 </select>
                             </div>
-
-                            <div class="col">
-                                <label for="birth_city" class="form-label">città</label>
-                                <input type="text" class="form-control" class="mb-3">
-                            </div>
-
                         </div>
 
                    

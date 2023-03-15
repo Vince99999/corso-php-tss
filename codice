@@ -1,0 +1,9 @@
+$validatorRunner= new ValidatorRunner([
+
+   "validatorName" => new ValidateRequired('', 'il nome è obbligatorio'),
+    "validatorLastName" => new ValidateRequired('', 'il cognome è obbligatorio'),
+    "validatorGender" => new ValidateGender(),
+  "validatorEmail "=> new ValidateMail('email', "l'email è obbligatoria")
+
+
+]);
