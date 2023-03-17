@@ -21,7 +21,7 @@ $validatorRunner = new ValidatorRunner([
     'gender'  => new ValidateRequired('','Il Genere è obbligatorio'),
     'birth_city'  => new ValidateRequired('','La città è obbligatoria'),
     'birth_region' => new ValidateRequired('','La regione è obbligatoria'),
-    'birth_province' => new ValidateRequired('','La provincia è obbligatoria'),
+    'birth_province' => new ValidateRequired('','La provincia  è obbligatoria'),
 
     'username'  => new ValidateRequired('','Username è obbligaztorio'),
     // 'username:email'  => new ValidateMail('','Formato email non valido'),
