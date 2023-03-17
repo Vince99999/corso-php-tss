@@ -19,8 +19,18 @@ class ValidatorRunner
     public function isValid() 
     {
         foreach ($this->validatorList as $name_attribute => $istance_validator) {
-            $istance_validator->isValid($_POST['name_attribute']);
+       
+            $istance_validator->isValid($_POST[$name_attribute]);
         }
+    }
+
+
+    public function getValid(): bool{
+        $all_valid = true;
+        foreach ($this->validatorList as $key => $istance_validator) {
+            $all_valid = $istance_validator -> getValid() && $all_valid;
+        }
+         return $all_valid;
     }
 }
 

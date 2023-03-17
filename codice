@@ -7,3 +7,8 @@ $validatorRunner= new ValidatorRunner([
 
 
 ]);
+
+
+
+
+INSERT INTO `user` (`user_id`, `first_name`, `last_name`, `birthday`, `birth_place`, `regione_id`, `provincia_id`, `gender`, `username`, `password`) VALUES (NULL, 'Mario', 'Rossi', '2023-03-15', 'Torino', '18', '96', 'M', 'mariorossi@email.com', MD5('password'));
