@@ -73,9 +73,11 @@ $user -> provincia_id = "15";
 $user ->  username = "luigiverdi@email.com";
 $user ->  password = md5('Password');
 
- $crud -> update(1);
- $crud -> read(1);
- print_r($user);
+print_r($user);
+
+  $crud -> update($user,1);
+//  $crud -> read(1);
+//  print_r($user);
 
 // TODO: inserire un secondo utente per testale la cacellazione singola
 

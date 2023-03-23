@@ -26,7 +26,7 @@ public function create(User $user)
   $stm -> execute();
 }
 
-public function update($user_id)
+public function update(User $user, $user_id)
 {
     $conn = new \PDO(DB_DSN, DB_USER, DB_PASSWORD);
     $query ="UPDATE user
@@ -35,7 +35,18 @@ public function update($user_id)
     username =:username, password=:password
     WHERE user_id = :user_id";
      $stm = $conn -> prepare($query);
-     $stm -> bindValue(':user_id', $user_id, \PDO::PARAM_INT);
+     $stm -> bindValue(':first_name', $user->first_name, \PDO :: PARAM_STR);
+     $stm -> bindValue(':last_name', $user->last_name, \PDO :: PARAM_STR);
+     $stm -> bindValue(':birthday', $user->birthday, \PDO :: PARAM_STR);
+     $stm -> bindValue(':birth_place', $user->birth_place, \PDO :: PARAM_STR);
+     $stm -> bindValue(':regione_id', $user->regione_id, \PDO :: PARAM_INT);
+     $stm -> bindValue(':provincia_id', $user->provincia_id, \PDO :: PARAM_INT);
+     $stm -> bindValue(':gender', $user->gender, \PDO :: PARAM_STR);
+     $stm -> bindValue(':username', $user->username, \PDO :: PARAM_STR);
+     $stm -> bindValue(':password', $user->password, \PDO :: PARAM_STR);
+
+     $stm -> bindValue(':user_id', $user_id, \PDO :: PARAM_INT);
+
      $stm -> execute();
      return $stm -> rowCount();
 }
