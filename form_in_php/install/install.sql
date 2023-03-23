@@ -213,10 +213,10 @@ CREATE TABLE `user` (
 -- Dump dei dati per la tabella `user`
 --
 
-INSERT INTO `user` (`user_id`, `first_name`, `last_name`, `birthday`, `birth_place`, `regione_id`, `provincia_id`, `gender`, `username`, `password`) VALUES
-(1, 'Mario', 'Rossi', '2023-03-15', 'Torino', 18, 96, 'M', 'mariorossi@email.com', '5f4dcc3b5aa765d61d8327deb882cf99'),
-(2, 'Mario', 'Rossi', '2023-03-15', 'Torino', 18, 96, 'M', 'mariorossi@email.com', '5f4dcc3b5aa765d61d8327deb882cf99'),
-(3, 'Mario', 'Rossi', '2023-03-15', 'Torino', 18, 96, 'M', 'mariorossi@email.com', '5f4dcc3b5aa765d61d8327deb882cf99');
+-- INSERT INTO `user` (`user_id`, `first_name`, `last_name`, `birthday`, `birth_place`, `regione_id`, `provincia_id`, `gender`, `username`, `password`) VALUES
+-- (1, 'Mario', 'Rossi', '2023-03-15', 'Torino', 18, 96, 'M', 'mariorossi@email.com', '5f4dcc3b5aa765d61d8327deb882cf99'),
+-- (2, 'Mario', 'Rossi', '2023-03-15', 'Torino', 18, 96, 'M', 'mariorossi@email.com', '5f4dcc3b5aa765d61d8327deb882cf99'),
+-- (3, 'Mario', 'Rossi', '2023-03-15', 'Torino', 18, 96, 'M', 'mariorossi@email.com', '5f4dcc3b5aa765d61d8327deb882cf99');
 
 --
 -- Indici per le tabelle scaricate
@@ -241,6 +241,8 @@ ALTER TABLE `regione`
 ALTER TABLE `user`
   ADD PRIMARY KEY (`user_id`);
 
+ALTER TABLE `user`
+  ADD UNIQUE (username);
 --
 -- AUTO_INCREMENT per le tabelle scaricate
 --

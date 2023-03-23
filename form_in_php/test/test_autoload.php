@@ -1,13 +1,13 @@
 <?php
 //funzione di callback e cioè funzione passata come argomento di un altra funzione
-require "./config.php";
+// require "./config.php";
 
-use Registry\it\Provincia;
-use Registry\it\Regione;
-use validator\ValidateDate;
-use validator\ValidateGender;
-use validator\ValidateMail;
-use validator\ValidateRequired;
+// use Registry\it\Provincia;
+// use Registry\it\Regione;
+// use validator\ValidateDate;
+// use validator\ValidateGender;
+// use validator\ValidateMail;
+// use validator\ValidateRequired;
 
 spl_autoload_register(function($className){
 
@@ -30,15 +30,15 @@ echo "\n\n\n";
 //callback inoltre automaticamente tutte le dipendenze verranno automaticamente richiamate senza
 //necessita del require o dell'include.
 
-new ValidateMail();
-new ValidateDate();
-new ValidateRequired();
-new ValidateGender();
+// new ValidateMail();
+// new ValidateDate();
+// new ValidateRequired();
+// new ValidateGender();
 
-new Regione();
+// new Regione();
 
-Regione::all();
-Provincia::all();
+// Regione::all();
+// Provincia::all();
 
 
 
