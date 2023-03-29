@@ -1,5 +1,8 @@
 <?php
 //funzione di callback e cioè funzione passata come argomento di un altra funzione
+
+
+
 // require "./config.php";
 
 // use Registry\it\Provincia;

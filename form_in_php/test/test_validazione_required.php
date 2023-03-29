@@ -3,6 +3,9 @@
 //Validate campo obbligatorio, quindi non deve essere vuoto
 //false
 //
+
+use validator\ValidateRequired;
+
 require "./form_in_php/class/validator/ValidateRequired.php";
 $testCases = [
     [

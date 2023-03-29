@@ -217,7 +217,13 @@ CREATE TABLE `user` (
 -- (1, 'Mario', 'Rossi', '2023-03-15', 'Torino', 18, 96, 'M', 'mariorossi@email.com', '5f4dcc3b5aa765d61d8327deb882cf99'),
 -- (2, 'Mario', 'Rossi', '2023-03-15', 'Torino', 18, 96, 'M', 'mariorossi@email.com', '5f4dcc3b5aa765d61d8327deb882cf99'),
 -- (3, 'Mario', 'Rossi', '2023-03-15', 'Torino', 18, 96, 'M', 'mariorossi@email.com', '5f4dcc3b5aa765d61d8327deb882cf99');
-
+INSERT INTO `user` (`user_id`, `first_name`, `last_name`, `birthday`, `birth_city`, `regione_id`, `provincia_id`, `gender`, `username`, `password`) VALUES
+(1, 'mario', 'verdi', '2023-04-17', 'torino', 15, 15, 'M', '@b.itdfdfsg', 'segretissimo'),
+(2, 'giovanni', 'neri', '2023-05-17', 'milano', 16, 15, 'M', 'aaa@xcvxc', 'a3ea3259dd51c5d28ac011a8dbf78e79'),
+(3, 'mirco', 'bianchi', '2023-02-17', 'napoli', 20, 18, 'M', 'xzczxcxzczxcz', 'a3ea3259dd51c5d28ac011a8dbf78e79'),
+(4, 'gianni', 'rossi', '2023-08-17', 'genova', 18, 17, 'M', 'wadaswdfasdf asfa', 'a3ea3259dd51c5d28ac011a8dbf78e79'),
+(5, 'mario', 'gialli', '2023-03-17', 'savona', 18, 17, 'M', 'a@b.it', 'a3ea3259dd51c5d28ac011a8dbf78e79'),
+(6, 'carlo', 'blu', '2023-02-17', 'roma', 2, 1, 'M', 'b@b.it', 'a3ea3259dd51c5d28ac011a8dbf78e79');
 --
 -- Indici per le tabelle scaricate
 --

@@ -27,8 +27,9 @@ class ValidateDate implements Validable {
             return $dt->format('d/m/Y');
         
         }else{
+          $this->valid = false;
             return false;
-        };
+        }
     }
     
 
@@ -44,6 +45,7 @@ class ValidateDate implements Validable {
    
     public function getValid()
     {
+       
       return $this->valid;
     }
 

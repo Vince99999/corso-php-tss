@@ -75,7 +75,7 @@ $user ->  password = md5('Password');
 
 print_r($user);
 
-  $crud -> update($user,1);
+  $crud -> update($user);
 //  $crud -> read(1);
 //  print_r($user);
 

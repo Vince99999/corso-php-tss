@@ -1,0 +1,13 @@
+
+body{
+
+padding-bottom: 3rem;
+
+}
+
+
+.footer-bottom{
+position: fixed;
+width: 100%;
+bottom: 0;
+}

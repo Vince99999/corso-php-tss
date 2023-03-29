@@ -28,6 +28,10 @@ class ValidatorRunner
     public function getValid(): bool{
         $all_valid = true;
         foreach ($this->validatorList as $key => $istance_validator) {
+
+            // echo $key."<br>";
+            // echo($istance_validator -> isValid());
+            // echo "<br>";
             $all_valid = $istance_validator -> getValid() && $all_valid;
         }
          return $all_valid;
