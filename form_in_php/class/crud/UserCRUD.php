@@ -24,6 +24,7 @@ public function create(User $user)
   $stm -> bindValue(':password', md5($user->password), \PDO :: PARAM_STR);
 
   $stm -> execute();
+ return $conn -> lastInsertId();
 }
 
 public function update(User $user)

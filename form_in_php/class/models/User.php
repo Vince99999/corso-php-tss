@@ -26,7 +26,7 @@ public static function arrayToUser(array $class_array):User
    $user = new User;
    foreach ($class_array as $class_attribute => $value_of_class_attribute) {
       //"first_name" --> $user ->first_name = "Paolo"clear
-   echo   $user -> $class_attribute = $value_of_class_attribute;
+   $user -> $class_attribute = $value_of_class_attribute;
   }
   return $user;
 }
