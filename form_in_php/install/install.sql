@@ -228,6 +228,22 @@ INSERT INTO `user` (`user_id`, `first_name`, `last_name`, `birthday`, `birth_cit
 -- Indici per le tabelle scaricate
 --
 
+
+
+DROP TABLE IF EXISTS `tasks`;
+CREATE TABLE `tasks` (
+  `task_id` int(10) NOT NULL,
+  `user_id` int(10) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `due_date` date NOT NULL,
+  `done` boolean NOT NULL,
+  PRIMARY KEY (user_id),
+    Foreign Key (user_id) REFERENCES user(user_id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+
+
+
 --
 -- Indici per le tabelle `provincia`
 --
@@ -285,4 +301,7 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+
+
 
