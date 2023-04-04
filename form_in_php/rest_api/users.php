@@ -122,20 +122,21 @@ $conn = new \PDO (DB_DSN, DB_USER, DB_PASSWORD);
   $stm -> execute();
   $result = $stm -> fetchAll(\PDO::FETCH_CLASS,User::class);
   //var_dump($result);
+  
+  //$result = $crud->read($user_id)
 
     if($rows==0 && count($result)>0){
-
-        http_response_code(404);
-
+        http_response_code(200);
         $response = [
             'errors'=> [
                [ 
-                'status' => 404,
+                'status' => 204,
                 'title' => 'Utente già aggiornato con i parametri immessi',
                 'details' => $user_id
                ]
             ]
         ];
+
     } elseif ($rows==0 && count($result)==0) {
 
          http_response_code(404);
