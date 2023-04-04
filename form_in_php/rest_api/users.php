@@ -116,16 +116,24 @@ echo json_encode($response);
             'status' => 202
         ];
     
-$query = "select user_id from user where user_id = $user_id;";
-$conn = new \PDO (DB_DSN, DB_USER, DB_PASSWORD);
-  $stm = $conn -> prepare($query);
-  $stm -> execute();
-  $result = $stm -> fetchAll(\PDO::FETCH_CLASS,User::class);
-  //var_dump($result);
-  
-  //$result = $crud->read($user_id)
+        //posso controllare gli errori anche instanziando un nuovo PDO ed utilizzando
+        //le query appropriate
 
-    if($rows==0 && count($result)>0){
+// $query = "select user_id from user where user_id = $user_id;";
+// $conn = new \PDO (DB_DSN, DB_USER, DB_PASSWORD);
+//   $stm = $conn -> prepare($query);
+//   $stm -> execute();
+//   $result = $stm -> fetchAll(\PDO::FETCH_CLASS,User::class);
+//   //var_dump($result);
+
+
+//oppure posso utilizzare il metodo CRUD predisposto per il ispezionare
+//il database ovvimanete le condizioni presenti nell'if saranno leggermente diverse
+  
+  $result = $crud->read($user_id);
+
+    if($rows==0 && $result != null){
+        //var_dump ($result);
         http_response_code(200);
         $response = [
             'errors'=> [
@@ -137,7 +145,7 @@ $conn = new \PDO (DB_DSN, DB_USER, DB_PASSWORD);
             ]
         ];
 
-    } elseif ($rows==0 && count($result)==0) {
+    } elseif ($rows==0 && $result == false) {
 
          http_response_code(404);
 
