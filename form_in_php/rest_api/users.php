@@ -64,6 +64,7 @@ case 'POST':
     $input = file_get_contents('php://input');
     $request =json_decode($input, true);
    $user =  User::arrayToUser($request);
+   try{
    $last_id = $crud-> create($user);
 
 // $response =[
@@ -87,7 +88,23 @@ $user['user_id'] = $last_id;
         'status' => 202
     ];
 
-echo json_encode($response);
+//echo json_encode($response,JSON_PRETTY_PRINT);
+   }
+
+   catch(\Throwable $th){
+http_response_code(422);
+$response = [
+    'errors' =>[
+'status' => 422,
+'title' => 'formato errato',
+'details' => $th -> getMessage(),
+'code' =>$th -> getCode(),
+        ]
+    ];
+
+   }
+   echo json_encode($response, JSON_PRETTY_PRINT);
+
       break;
 
     case 'PUT':

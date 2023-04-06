@@ -14,7 +14,7 @@ class TaskCRUD{
   $conn = new \PDO (DB_DSN, DB_USER, DB_PASSWORD);
   $stm = $conn -> prepare($query);
 
-  $stm -> bindValue(':user_id', $task->task_id, \PDO :: PARAM_STR);
+  $stm -> bindValue(':user_id', $task->user_id, \PDO :: PARAM_STR);
   $stm -> bindValue(':name', $task->name, \PDO :: PARAM_STR);
   $stm -> bindValue(':due_date', $task->due_date, \PDO :: PARAM_STR);
   $stm -> bindValue(':done', $task->done, \PDO :: PARAM_STR);
@@ -50,7 +50,7 @@ public function read(int $task_id=null)
     $conn = new \PDO(DB_DSN, DB_USER, DB_PASSWORD);
     
 if(!is_null($task_id)){
-    $query = "SELECT * FROM user where user_id = :user_id";
+    $query = "SELECT * FROM tasks where task_id = :task_id";
     $stm = $conn -> prepare($query);
     $stm -> bindValue(':task_id', $task_id, \PDO::PARAM_INT);
     $stm -> execute();
@@ -77,7 +77,6 @@ if(!is_null($task_id)){
 }
 
     $stm -> execute();
-     //User::class restituisce il nome completo della classe User comprensivo del namespace
      $result = $stm -> fetchAll(\PDO::FETCH_CLASS,Task::class);
      return $result;
 }
@@ -85,12 +84,38 @@ if(!is_null($task_id)){
 public function delete($task_id)
 {
     $conn = new \PDO(DB_DSN, DB_USER, DB_PASSWORD);
-    $query = "DELETE from user where user_id = :user_id";
+    $query = "DELETE from tasks where task_id = :task_id";
     $stm = $conn -> prepare($query);
-    $stm -> bindValue(':user_id', $task_id, \PDO::PARAM_INT);
+    $stm -> bindValue(':task_id', $task_id, \PDO::PARAM_INT);
     $stm -> execute();
     return $stm -> rowCount();
 }
 
+public function getUserTasks(int $user_id){
+
+    $conn = new \PDO(DB_DSN, DB_USER, DB_PASSWORD);
+ 
+    if(!is_null($user_id)){
+
+        $query = "SELECT * FROM tasks where user_id = :user_id";
+        $stm = $conn -> prepare($query);
+        $stm -> bindValue(':user_id', $user_id, \PDO::PARAM_INT);
+        $stm -> execute();
+        $result = $stm -> fetchAll(\PDO::FETCH_CLASS,Task::class);
+    }
+    else{
+        $query = "SELECT * FROM tasks";
+        $stm = $conn -> prepare($query);
+        $stm -> execute();
+        $result = $stm -> fetchAll(\PDO::FETCH_CLASS,Task::class);
+        return $result;
+    }
+
+
+$stm -> execute();
+$result = $stm -> fetchAll(\PDO::FETCH_CLASS,Task::class);
+return $result;
+
+}
 }
 
