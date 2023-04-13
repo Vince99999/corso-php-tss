@@ -13,18 +13,37 @@ $crud = new TaskCRUD;
 switch ($_SERVER['REQUEST_METHOD']) {
     case 'GET':
 
-  if(     $task_id = filter_input(INPUT_GET, 'task_id')){
+  if($task_id = filter_input(INPUT_GET, 'task_id')){
         if (!is_null($task_id)) {
-            echo json_encode($crud->read($task_id));
+           $tasks = $crud->read($task_id);
+            $response = [
+                'data' => $tasks,
+                // 200 Risposta standard
+                'status' => 200
+            ];
+
+            echo json_encode($response, JSON_PRETTY_PRINT);
         } 
     }elseif(
          $user_id = filter_input(INPUT_GET, 'user_id')){
          $userTasks = $crud->getUserTasks($user_id);
-         echo json_encode($userTasks);
+         $response = [
+            'data' => $userTasks,
+            // 200 Risposta standard
+            'status' => 200
+        ];
+
+        echo json_encode($response);
         }
         elseif($task_id==null && $user_id== null){
             $tasks = $crud->read();
-            echo json_encode($tasks);
+            $response = [
+                'data' => $tasks,
+                // 200 Risposta standard
+                'status' => 200
+            ];
+    
+            echo json_encode($response, JSON_PRETTY_PRINT);
         }
 
         #Model
@@ -49,7 +68,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
             'status' => 202
         ];
 
-        echo json_encode($response);
+        echo json_encode($response, JSON_PRETTY_PRINT);
         break;
 
     case 'PUT':
@@ -67,8 +86,6 @@ switch ($_SERVER['REQUEST_METHOD']) {
 
         $last_id = $crud->update($taskagain);
 
-        // var_dump ($useragain);
-
         $taskagain = (array) $taskagain;
 
         $taskagain['task_id'] = $task_id;
@@ -84,7 +101,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
 
             http_response_code(200);
             $response = [
-                'errors' => [
+                'warning' => [
                     [
                         'status' => 204,
                         'title' => 'task già aggiornata con i parametri immessi',
@@ -106,9 +123,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
                 ]
             ];
         }
-
-        echo json_encode($response);
-
+        echo json_encode($response, JSON_PRETTY_PRINT);
         break;
 
     case 'DELETE':
@@ -116,9 +131,16 @@ switch ($_SERVER['REQUEST_METHOD']) {
         if (!is_null($task_id)) {
             $rows =  $crud->delete($task_id);
             if ($rows == 1) {
-                http_response_code(204);
+                http_response_code(202);
+
+                $response = [
+                    'data' => $task_id,
+                    //SUCCESS: 202 Accepted
+                    'status' => 202,
+                    'title' => "Task cancellato"
+                ];
             }
-            if ($rows == 0) {
+            elseif ($rows == 0) {
 
                 http_response_code(404);
 
@@ -126,13 +148,13 @@ switch ($_SERVER['REQUEST_METHOD']) {
                     'errors' => [
                         [
                             'status' => 404,
-                            'title' => 'Task non eliminata o inesistente',
+                            'title' => 'Risorsa non trovata',
                             'details' => $task_id
                         ]
                     ]
                 ];
             }
-            echo json_encode($response);
+            echo json_encode($response, JSON_PRETTY_PRINT);
         }
         break;
 
