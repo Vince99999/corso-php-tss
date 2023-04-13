@@ -2,7 +2,7 @@
 
 use crud\UserCRUD;
 use models\User;
-include "../../config.php";
+include "../config.php";
 include "../autoload.php";
 
 // echo $_SERVER['REQUEST_METHOD'];
@@ -15,10 +15,22 @@ switch ($_SERVER['REQUEST_METHOD']) {
 
         $user_id = filter_input(INPUT_GET, 'user_id');
         if(!is_null($user_id)){
-            echo json_encode($crud->read($user_id));
+            $users = $crud->read($user_id);
+            $response = [
+                'data' => $users,
+                // 200 Risposta standard
+                'status' => 200
+            ];
+            echo json_encode($response);
+
         }else{
             $users = $crud->read();
-            echo json_encode($users);
+            $response = [
+                'data' => $users,
+                // 200 Risposta standard
+                'status' => 200
+            ];
+            echo json_encode($response);
         }
         //var_dump($user_id); 
        //ottenere i dati degli utenti
@@ -32,7 +44,13 @@ CASE 'DELETE':
            $rows=  $crud -> delete($user_id);
            if($rows == 1){
 
-            http_response_code(204);
+            http_response_code(200);
+            $response = [
+                'data' => $user_id,
+                'title' => 'Utente rimosso',
+                // 200 Risposta standard
+                'status' => 200
+            ];
 
            }
            if($rows==0){
@@ -43,7 +61,7 @@ CASE 'DELETE':
                 'errors'=> [
                    [ 
                     'status' => 404,
-                    'title' => 'Utente eliminato',
+                    'title' => 'Utente inesistente',
                     'details' => $user_id
                    ]
                 ]

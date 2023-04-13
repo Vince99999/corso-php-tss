@@ -8,7 +8,7 @@ use models\User;
 use Registry\it\Provincia;
 use Registry\it\Regione;
 
-require "../config.php";
+require "./config.php";
 require "./autoload.php";
 print_r($_GET);
 $user_id = filter_input(INPUT_GET, 'user_id', FILTER_VALIDATE_INT);

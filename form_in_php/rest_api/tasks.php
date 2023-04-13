@@ -3,7 +3,7 @@
 use crud\TaskCRUD;
 use models\Task;
 
-include "../../config.php";
+include "../config.php";
 include "../autoload.php";
 
 // echo $_SERVER['REQUEST_METHOD'];

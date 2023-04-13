@@ -1,5 +1,5 @@
 <?php
-include "../../config.php";
+include "../config.php";
 
 $query = file_get_contents("install.sql");
 
