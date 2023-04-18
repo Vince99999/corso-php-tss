@@ -10,7 +10,7 @@ use Registry\it\Regione;
 
 require "./config.php";
 require "./autoload.php";
-print_r($_GET);
+//print_r($_GET);
 $user_id = filter_input(INPUT_GET, 'user_id', FILTER_VALIDATE_INT);
 
 $crud = new UserCRUD;
@@ -42,14 +42,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $validatorRunner->isValid();
 
     if ($validatorRunner->getValid()) {
-        echo "posso inviare i dati di validazione";
+   //     echo "posso inviare i dati di validazione";
       // print_r($_POST);
         $user = User::arrayToUser($_POST);
         print_r($user);
         $crud = new UserCRUD();
         $crud->update($user);
 
-        header("location: index-user.php");
+        header("location:index.php");
     }
 }
 
@@ -63,7 +63,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <section class="row">
     <div class="col-sm-8">
-        <form class="mt-1 mt-md-5" action="edit-user.php" method="post">
+        <form class="mt-1 mt-md-5" action="edit-user.php?user_id= <? $user -> user_id?>" method="post">
             <div class="mb-3">
                 <label for="first_name" class="form-label">nome</label>
                 <input type="text" value="<?= $first_name->getValue() ?>" class="form-control <?php echo !$first_name->getValid() ? 'is-invalid' : ''  ?>" name="first_name" id="first_name">

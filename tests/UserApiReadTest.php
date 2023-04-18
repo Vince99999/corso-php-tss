@@ -2,7 +2,7 @@
 
 use PHPUnit\Framework\TestCase;
 
-require "./config.php";
+require "./form_in_php/config.php";
 
 Class UserApiReadTest extends TestCase{
     public function test_read_user_api(){

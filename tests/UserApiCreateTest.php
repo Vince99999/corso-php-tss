@@ -1,12 +1,12 @@
 <?php
 use PHPUnit\Framework\TestCase;
 
-require "./config.php";
+require "./form_in_php/config.php";
 
 Class UserApiCreateTest extends TestCase{
   
 public function test_create_user_api(){
-  (new PDO(DB_DSN,DB_USER,DB_PASSWORD))->query("TRUNCATE TABLE user;");
+ // (new PDO(DB_DSN,DB_USER,DB_PASSWORD))->query("TRUNCATE TABLE user;");
 $payload  = [
     "first_name" => "Miriana",
     "last_name" => "DaRoit",

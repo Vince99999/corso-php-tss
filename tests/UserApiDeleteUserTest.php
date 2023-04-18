@@ -3,9 +3,9 @@ use PHPUnit\Framework\TestCase;
 
 require_once "./form_in_php/config.php";
 
-Class TaskApiDeleteTest extends TestCase{
+Class UserApiDeleteUserTest extends TestCase{
   
-public function test_delete_task_api(){
+public function test_delete_user_api(){
  // (new PDO(DB_DSN,DB_USER,DB_PASSWORD))->query("TRUNCATE TABLE task;");
 
 

@@ -43,14 +43,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $validatorRunner->isValid();
 
     if ($validatorRunner->getValid()) {
-        echo "posso inviare i dati di validazione";
+    //    echo "posso inviare i dati di validazione";
         //print_r($_POST);
         $user = User::arrayToUser($_POST);
        // print_r($user);
         $crud = new UserCRUD();
         $crud->create($user);
 
-        header("location: index-user.php");
+        header("location:index.php");
     }
 }
 
