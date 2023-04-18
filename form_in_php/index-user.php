@@ -14,7 +14,7 @@ $users = (new UserCRUD()) -> read();
 
 <?php require "./class/views/head-view.php" ?>
 
-
+<a href="create-user.php" class="btn btn-sm btn-success">Aggiungi utente</a>
 <table class="table">
 <tr>
     <th>#</th>

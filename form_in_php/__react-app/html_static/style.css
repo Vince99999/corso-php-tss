@@ -1,0 +1,152 @@
+* {
+    box-sizing: border-box;
+} 
+
+body{
+        text-align: center;
+        width: 50%;
+        margin-right: auto;
+        margin-left: auto;
+        background-color: aquamarine;
+}
+
+main{
+    background-color: rgb(255, 166, 0);
+    border: 5px solid black;
+    border-radius: 15px 15px 15px 15px;
+    padding: 1%;
+    font-size:2vw;
+}
+
+a{
+    font-size: 2vw;
+    padding: 1%;
+}
+
+dt{
+    display : flex;
+}
+
+
+.avatar__img {
+        /* border radius al 50% l immagine diventa rotonda */
+        border-radius: 50%;
+        width: 64px;
+        margin-right: 1rem;
+        margin-left: 3px;
+        margin-top: 3px;
+        margin-bottom: 3px;
+ }
+
+ .avatar {
+        border: 1px solid rgb(1, 186, 211);
+        display: flex;
+        align-items: center;
+        border-radius: 15px 15px 15px 15px;
+        margin-bottom: 1rem;
+        background-color: rgba(78, 234, 255, 0.099);
+    }
+
+    .new_task{ 
+        display: flex;
+        padding: 15px;
+        justify-content: space-evenly;
+        align-items: stretch;
+    }
+
+.container{
+   border: 1px solid rgb(1, 186, 211);
+   background-color: rgb(188, 235, 151);
+   border-radius: 15px 15px 15px 15px;
+   
+}
+
+.task-button{
+    background-color: yellow;
+    border-radius: 15px 15px 15px 15px;
+    width: 15%;
+    font-size:1vw;
+    cursor:pointer;
+}
+
+.task-button:active {
+    background-color: #09ff00;
+}
+
+.task-control{
+        font-size:2vw;
+        border-radius: 15px 15px 15px 15px;
+        text-align: center;
+    }
+
+ .date{
+        padding-top: 20px;
+        padding-bottom: 20px;
+       
+    }
+
+.date-task{
+        font-size: 2vw;
+        border-radius: 10px 10px 10px 10px;
+    }
+
+.filter{
+        display : flex;
+        justify-content: space-around
+    }
+
+   
+
+.datepicker{
+        background-color: yellow;
+        border-radius: 15px 15px 15px 15px;
+        width: 15%;
+        font-size:1vw;
+        cursor:pointer;
+    }
+.datepicker:active {
+        background-color: #09ff00;
+    }
+
+    .control-datepicker{
+        font-size: 2vw;
+        border-radius: 10px 10px 10px 10px;
+        text-align: center;
+    }
+
+.task{
+        display: flex;
+        border: 1px solid;
+        border-radius: 5px 5px 5px 5px;
+        background-color: rgba(0, 255, 0, 0.603);
+        font-size: 2vw; 
+        margin-bottom: 0.5rem;
+        justify-content: space-between;  
+        align-items: center;   
+}
+
+input.checkbox{
+        width: 30px;
+        height: 30px;
+    }
+
+.button-x{
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background-color: red;
+        cursor:pointer;
+        
+    }
+
+.button-x:active {
+        background-color: #ffbf00;
+    }
+
+.task-info{
+        display: flex;
+        justify-content: space-evenly;
+        margin-top: 5px;
+    }
+
+ 

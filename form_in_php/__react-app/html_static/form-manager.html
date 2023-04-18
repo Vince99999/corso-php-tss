@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+        <h1>todo list manager</h1>
+    </header>
+
+    <main>
+
+        <section>
+
+            <div class="avatar">
+                <img class="avatar__img" src="https://i.pravatar.cc/150?img=5" alt="Mario Rossi">
+                <div class="avatar__user">manager</div>
+            </div>
+
+            <section class="container">
+                <div class="new_task">
+                    <label for="tasks" class="task-label"></label>
+                    <input type="text" value="" class="task-control" name="tasks" id="tasks"
+                        placeholder="add new task/ricerca">
+                    <button class="task-button" type="submit">Add</button>
+                </div>
+                <div class="date">
+                    <input class="date-task" type="date">
+                </div>
+            </section>
+
+            <div class="filter">
+                <a class="link" href="#">all</a>
+                <a class="link" href="#">active</a>
+                <a class="link" href="#">completed</a>
+            </div>
+
+            <div class="task-info">
+                <label for="datepicker" class="datepicker-label"></label>
+                <input type="text" value="" class="control-datepicker" name="datepicker" id="datepicker"
+                    placeholder="date (datepicker)">
+                <button class="datepicker" type="submit">Today</button>
+            </div>
+
+
+            <div>
+
+                <dl>
+                    <dt><div class="avatar">
+                        <img  class="avatar__img"  src="https://i.pravatar.cc/150?img=5" alt="Mario Rossi">
+                        <div class="avatar__user">employee 1</div>
+                    </div></dt>
+                    <dd>
+                        <div class="task">
+                            <input class="checkbox" type="checkbox" name="contollo" value="...">
+                            <label for="datepicker" class="form-label">buy product 1</label>
+                            <button class="button-x" type="submit">X</button>
+                        </div>
+                    </dd>
+                    <dd>
+                        <div class="task"><input class="checkbox" type="checkbox" name="contollo" value="...">
+                            <label for="datepicker" class="form-label">buy product 2</label>
+                            <button class="button-x" type="submit">X</button>
+                        </div>
+                    </dd>
+                </dl>
+                <dl>
+                    <dt><div class="avatar">
+                        <img  class="avatar__img"  src="https://i.pravatar.cc/150?img=5" alt="Mario Rossi">
+                        <div class="avatar__user">employee 2</div>
+                    </div></dt>
+                    <dd>
+                        <div class="task">
+                            <input class="checkbox" type="checkbox" name="contollo" value="...">
+                            <label for="datepicker" class="form-label">buy product 3</label>
+                            <button class="button-x" type="submit">X</button>
+                        </div>
+                    </dd>
+                    <dd>
+                        <div class="task"><input class="checkbox" type="checkbox" name="contollo" value="...">
+                            <label for="datepicker" class="form-label">buy product 5</label>
+                            <button class="button-x" type="submit">X</button>
+                        </div>
+                    </dd>
+                </dl>
+            </div>
+
+
+        </section>
+
+    </main>
+
+
+
+
+
+
+
+
+</body>
+
+</html>

@@ -229,20 +229,6 @@ INSERT INTO `user` (`user_id`, `first_name`, `last_name`, `birthday`, `birth_pla
 --
 
 
-
-DROP TABLE IF EXISTS `tasks`;
-CREATE TABLE `tasks` (
-  `task_id` int(10) NOT NULL,
-  `user_id` int(10) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `due_date` date NOT NULL,
-  `done` boolean NOT NULL,
-    Foreign Key (user_id) REFERENCES user(user_id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
-
-
-
 --
 -- Indici per le tabelle `provincia`
 --
@@ -261,10 +247,7 @@ ALTER TABLE `regione`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`user_id`);
--- Indici per le tabelle `user`
---
-ALTER TABLE `tasks`
-  ADD PRIMARY KEY (`task_id`);
+
 
 ALTER TABLE `user`
   ADD UNIQUE (username);
@@ -290,11 +273,7 @@ ALTER TABLE `regione`
 ALTER TABLE `user`
   MODIFY `user_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
---
--- AUTO_INCREMENT per la tabella `tasks`
---
-ALTER TABLE `tasks`
-  MODIFY `task_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
 --
 -- Limiti per le tabelle scaricate
 --
