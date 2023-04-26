@@ -1,0 +1,5 @@
+//il file package.Json presente nella cartella service serve per fare in modo che la cartella service sia un modulo a se stante nel quale si possano
+//testa le singole funzioni con node, ogni modulo ha il suo package.json per poter funzionare
+//ecco perchè per rendere indipendente questo modulo è stato necessario crearne uno distinto da quello presente
+//nella cartella components che a sua volta è un altro modulo
+//NB ripassare la sinstassi necessaria in react per importare ed utilizzare le funzioni all'interno di un modulo da altri moduli
