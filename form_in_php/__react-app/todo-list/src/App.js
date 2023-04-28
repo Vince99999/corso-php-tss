@@ -11,7 +11,24 @@ import { activeFilter, addTask, completedFilter, removeTask } from './service/To
 function App() {
 
 
-  const[taskListData, setTaskListData] = useState([])
+  const[taskListData, setTaskListData] = useState([
+      {
+        task_id:10,
+        user_id:12,
+        name: "comprare il latte",
+        due_date:"2023-04-4",
+        done:true
+    },
+  
+      {
+        task_id:11,
+    user_id:12,
+        name: "leggere un manuale a caso",
+        due_date:"2023-04-4",
+        done:false
+    }
+    
+    ])
 
 
   const[filteredTask, setFilteredTask] = useState(taskListData)
@@ -46,12 +63,14 @@ function parentAddTask(newTask) {
   //console.log(taskListData)
 
   setTaskListData(newTaskListData)
+  setFilteredTask(newTaskListData)
 }
 
 function parentRemoveTask(taskId) {
   console.log("parentRemoveTask "+ taskId)
   const res = removeTask(taskId,taskListData)
   setTaskListData(res)
+  setFilteredTask(res)
 }
 
 // function parentUpdateStatus(done) {
@@ -70,17 +89,14 @@ function onShowCompleted() {
   // chiamo il servizio 
   // aggiorno lo stato
   // console.log("tasto attivato")
-  //  const res = completedFilter(filteredTask)
-  //  console.log(res)
-  //  setTaskListData(res)
+    const res = completedFilter(taskListData)
+    setFilteredTask(res)
 }
 function onShowAll() {
   // chiamo il servizio 
   // aggiorno lo stato
   console.log("tasto attivato")
- // setFilteredTask(taskListData)
-
-  
+  setFilteredTask(taskListData)
 }
   
 function onShowActive() {
@@ -88,7 +104,9 @@ function onShowActive() {
   // aggiorno lo stato
 console.log("tasto attivato")
 
- 
+const res = activeFilter(taskListData)
+setFilteredTask(res)
+
 }
 
 return (
@@ -105,7 +123,7 @@ return (
     {/* <TaskItem nome_task={'Comprare il Campari'}></TaskItem> */}
     {/* {list} */}
     <TaskList header={'Cose da fare oggi'} tasks={taskListData}>
-    { taskListData.map( task =><TaskItem key = {task.task_id}
+    {filteredTask.map( task =><TaskItem key = {task.task_id}
                                 parentRemoveTask = {parentRemoveTask}
                                 id = {task.id}  
                                 done = {task.done}
