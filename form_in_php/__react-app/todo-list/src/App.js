@@ -73,36 +73,23 @@ function parentRemoveTask(taskId) {
   setFilteredTask(res)
 }
 
-// function parentUpdateStatus(done) {
-
-//   if (done == false) {
-//     done == true
-//   }else {
-//     done == true
-//   }
-  
-// }
-
 
 
 function onShowCompleted() {
   // chiamo il servizio 
   // aggiorno lo stato
-  // console.log("tasto attivato")
     const res = completedFilter(taskListData)
     setFilteredTask(res)
 }
 function onShowAll() {
   // chiamo il servizio 
   // aggiorno lo stato
-  console.log("tasto attivato")
   setFilteredTask(taskListData)
 }
   
 function onShowActive() {
   // chiamo il servizio 
   // aggiorno lo stato
-console.log("tasto attivato")
 
 const res = activeFilter(taskListData)
 setFilteredTask(res)
