@@ -57,7 +57,7 @@ export const updateTask = (taskToUpdate, todos) => {
 
 
 
-export const    activeFilter = (todos) => {
+export const activeFilter = (todos) => {
     // filter restituisce tutto ciò che da come risultato true nella funzione di call back
     // in questo caso, come previsto nella maniera sottostante, done = false da come risultato true
 return todos.filter(task=>!task.done)
