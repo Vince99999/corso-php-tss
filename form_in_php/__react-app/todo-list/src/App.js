@@ -85,7 +85,7 @@ if(tasklist == null){
   
   // ]
 
-function parentAddTask(newTask) {
+function ParentAddTask(newTask) {
 
   //TODO USER_ID
   const newTaskListData = addTask(newTask, taskListData)
@@ -97,9 +97,9 @@ function parentAddTask(newTask) {
   //il metodo setItem di localStorage aggiunge una stringa alla memoria del localStorage
   //il metodo stringify di JSON trasforma il file json passato come argomento in una stringa che avrà una sintassi corrsipondente ad un file json
 
-  // useEffect(()=> {
-  //   addTask(newTask)
-  // }, [])
+  useEffect(()=> {
+    addTask(newTask)
+  }, [])
 }
 
 function parentRemoveTask(taskId) {
@@ -145,7 +145,7 @@ return (
   <main>
 
 {/* ATTENZIONE la proprietà  parentAddTask contiene una funzione parentAddTask ma non sono la stessa cosa */}
-<SearchBar parentAddTask={parentAddTask}> </SearchBar>
+<SearchBar parentAddTask={ParentAddTask}> </SearchBar>
 
     <button onClick={onShowAll}>all</button>
     <button onClick={onShowActive}>active</button>
