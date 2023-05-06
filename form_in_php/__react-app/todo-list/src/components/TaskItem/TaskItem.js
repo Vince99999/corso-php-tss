@@ -6,18 +6,18 @@ import { useState } from "react"
 // const {TaskItem, done} = props;
 //props.done, props.nome_task
 
-function TaskItem ({nome_task, done, id, parentRemoveTask}) {
+function TaskItem ({nome_task, done, id, parentRemoveTask, parentUpdateTask}) {
     const [doneCheckBox, setDoneCheckbox] = useState(done)
 
     function onRemoveTask() {
-      console.log("task " + id)
+      //console.log("task " + id)
       parentRemoveTask(id)
     }
 
     function onUpdateStatus(event) {
      
       setDoneCheckbox(event.target.checked)
-    
+      parentUpdateTask(id)
     }
 
 // la tecnologia che utuilizza react per convertire gli html si chiama jsx
